@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <div id="root">
+        <h1>
+            {{ reversedMessage }}
+        </h1>
+
+        <h1>All Tasks</h1>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+
+        <h1>Completed Tasks</h1>
+        <ul>
+            <li v-for="task in completeTasks" v-text="task.description"></li>
+        </ul>
+
+        <h1>Incomplete Tasks</h1>
+        <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <script>
+        new Vue({
+            el: '#root',
+
+            data: {
+                message: 'Hello World',
+                tasks: [
+                    { description: 'go to store 1', completed: true },
+                    { description: 'go to store 2', completed: true },
+                    { description: 'go to store 3', completed: true },
+                    { description: 'go to store 4', completed: false },
+                    { description: 'go to store 5', completed: false }
+                ]
+            },
+
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('')
+                },
+
+                completeTasks() {
+                    return this.tasks.filter(task => task.completed)
+                },
+
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
