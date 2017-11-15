@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <html>
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css" />
+
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root" class="container">
+
+        <modal>
+            <template slot="header">Here might be a page title</template>
+
+            here is my main content
+
+            <template slot="footer">
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </template>
+        </modal>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
