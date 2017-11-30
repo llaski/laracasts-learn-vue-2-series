@@ -7,9 +7,14 @@
     <style>body { padding-top: 40px; }</style>
 </head>
 
+<script>
+    window.InitialProjects = <?php echo json_encode($projects); ?>
+</script>
+
 <body>
     <div id="app" class="container">
-        @include('projects.list')
+
+        <project-list :projects="projects"></project-list>
 
         <form method="POST" action="/projects" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
             {{ csrf_field() }}
