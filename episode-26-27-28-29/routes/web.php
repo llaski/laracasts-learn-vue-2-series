@@ -15,14 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/statuses', function () {
-    return App\Status::with('user')->latest()->get()->map(function($status) {
-        return [
-            'user' => [
-                'name' => $status->user->name
-            ],
-            'body' => $status->body,
-            'created_at' => $status->created_at,
-        ];
-    });
-});
+Route::get('/statuses', 'StatusesController@index');
+Route::post('/statuses', 'StatusesController@store');

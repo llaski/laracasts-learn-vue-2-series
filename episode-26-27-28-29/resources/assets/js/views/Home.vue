@@ -8,12 +8,14 @@
                             {{ status.user.name }} said...
                         </p>
                         <p>
-                            {{ postedOn(status) }}
+                            {{ status.created_at.date | ago }}
                         </p>
                     </div>
 
                     <div class="message-body" v-text="status.body"></div>
                 </div>
+
+                <add-to-stream @completed="addStatus"></add-to-stream>
             </div>
         </div>
     </div>
@@ -22,10 +24,22 @@
 <script>
 import moment from 'moment'
 import Status from '../models/Status'
+import AddToStream from '../components/AddToStream'
+
   export default {
+    components: {
+        AddToStream
+    },
+
     data() {
         return {
             statuses: []
+        }
+    },
+
+    filters: {
+        ago(value) {
+            return moment(value).fromNow()
         }
     },
 
@@ -34,8 +48,10 @@ import Status from '../models/Status'
     },
 
     methods: {
-        postedOn(status) {
-            return moment(status.created_at.date).fromNow()
+        addStatus(status) {
+            this.statuses.unshift(status)
+
+            window.scrollTo(0, 0)
         }
     }
 
